@@ -1,0 +1,21 @@
+[theme.dark]
+primaryColor = "#4B7EC0"
+backgroundColor = "#0A1420"
+secondaryBackgroundColor = "#112236"
+textColor = "#F4F1EA"
+borderColor = "#1B3555"
+headingFont = "'Playfair Display':https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap"
+
+[theme.light]
+primaryColor = "#4B7EC0"
+backgroundColor = "#E9E4D6"
+secondaryBackgroundColor = "#E2DBC9"
+textColor = "#0F2F56"
+borderColor = "#D4C9AE"
+headingFont = "'Playfair Display':https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap"
+
+# Viewers see a generic "error" box instead of the traceback (file paths, code). The full
+# error still goes to the console: the terminal running `streamlit run`, or the Logs panel
+# of "Manage app" on Streamlit Community Cloud. Caught errors are logged there by log.exception.
+[client]
+showErrorDetails = "none"

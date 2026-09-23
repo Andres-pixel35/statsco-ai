@@ -1,0 +1,14 @@
+---
+name: statsco_ai
+channels:
+  - conda-pypi
+  - defaults
+dependencies:
+  - python=3.11
+  - streamlit==1.62.0
+  - pandas==3.0.5
+  - numpy==2.4.6
+  - boto3==1.43.59
+  - sentence-transformers==5.6.0
+  - openai==3.7.0
+  - plotly==6.9.0

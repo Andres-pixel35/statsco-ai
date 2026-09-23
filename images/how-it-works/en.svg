@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img"
+     aria-label="Flowchart of how a question moves through the app: it is checked against what the data covers, the right tables are found, the numbers are looked up and retried if needed, then shown either as a written answer or, when a chart fits better, as a chart or map. Off to the side: unclear questions are asked to be rephrased, out-of-scope questions get a list of what the app can help with, and questions with no matching data are told so.">
+  <rect x="0" y="0" width="900" height="900" rx="16" fill="#E4F4EC" stroke="#B9CCC2" stroke-width="1.5"></rect>
+
+  <defs>
+    <marker id="arrow-l" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#0D6E5F"></path>
+    </marker>
+  </defs>
+
+  <g fill="none" stroke="#0D6E5F" stroke-width="1.6">
+    <line x1="250" y1="78"  x2="250" y2="128" marker-end="url(#arrow-l)"></line>
+    <line x1="250" y1="250" x2="250" y2="308" marker-end="url(#arrow-l)"></line>
+    <line x1="350" y1="190" x2="508" y2="130" marker-end="url(#arrow-l)"></line>
+    <line x1="350" y1="190" x2="508" y2="270" marker-end="url(#arrow-l)"></line>
+    <line x1="250" y1="370" x2="250" y2="423" marker-end="url(#arrow-l)"></line>
+    <line x1="250" y1="495" x2="250" y2="548" marker-end="url(#arrow-l)"></line>
+    <line x1="390" y1="460" x2="508" y2="460" marker-end="url(#arrow-l)"></line>
+    <line x1="350" y1="610" x2="508" y2="610" marker-end="url(#arrow-l)"></line>
+    <line x1="250" y1="670" x2="250" y2="723" marker-end="url(#arrow-l)"></line>
+    <path d="M328,425 C328,372 172,372 172,423" marker-end="url(#arrow-l)"></path>
+  </g>
+
+  <g fill="#E4F4EC">
+    <rect x="210" y="270" width="80" height="18" rx="4"></rect>
+    <rect x="413" y="151" width="34" height="18" rx="4"></rect>
+    <rect x="393" y="221" width="74" height="18" rx="4"></rect>
+    <rect x="210" y="512" width="80" height="18" rx="4"></rect>
+    <rect x="234" y="687" width="32" height="18" rx="4"></rect>
+  </g>
+  <g font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="11.5" fill="#34393A" text-anchor="middle">
+    <text x="250" y="283">Answerable</text>
+    <text x="430" y="164">No</text>
+    <text x="430" y="234">Unclear</text>
+    <text x="250" y="354">Adjusts &amp; retries</text>
+    <text x="250" y="525">Found data</text>
+    <text x="449" y="450">Still nothing</text>
+    <text x="429" y="600">Yes</text>
+    <text x="250" y="700">No</text>
+  </g>
+
+  <rect x="110" y="22" width="280" height="56" rx="28" fill="#EEF9F3" stroke="#B9CCC2" stroke-width="1.5"></rect>
+  <text x="250" y="55" text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13.5" font-weight="500" fill="#34393A">You ask a question</text>
+
+  <polygon points="250,130 350,190 250,250 150,190" fill="#7ED9B8"></polygon>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="12.5" fill="#1E4438">
+    <text x="250" y="185">Something the</text>
+    <text x="250" y="201">data covers?</text>
+  </g>
+
+  <rect x="110" y="310" width="280" height="60" rx="10" fill="#0D6E5F"></rect>
+  <text x="250" y="345" text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" fill="#EAFBF4">Finds the right tables</text>
+
+  <rect x="110" y="425" width="280" height="70" rx="10" fill="#0D6E5F"></rect>
+  <text x="250" y="465" text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" fill="#EAFBF4">Looks up the numbers</text>
+
+  <polygon points="250,550 350,610 250,670 150,610" fill="#7ED9B8"></polygon>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="12.5" fill="#1E4438">
+    <text x="250" y="605">Did you ask</text>
+    <text x="250" y="621">for a chart?</text>
+  </g>
+
+  <rect x="110" y="725" width="280" height="70" rx="14" fill="#0D6E5F"></rect>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#EAFBF4">
+    <text x="250" y="755">Writes a plain-</text>
+    <text x="250" y="771">language answer</text>
+  </g>
+
+  <rect x="510" y="95"  width="280" height="70" rx="14" fill="#A94A1E"></rect>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#FFF6EF">
+    <text x="650" y="125">Explains what</text>
+    <text x="650" y="141">it can help with</text>
+  </g>
+
+  <rect x="510" y="235" width="280" height="70" rx="14" fill="#A94A1E"></rect>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#FFF6EF">
+    <text x="650" y="265">Asks you to</text>
+    <text x="650" y="281">clarify</text>
+  </g>
+
+  <rect x="510" y="425" width="280" height="70" rx="14" fill="#A94A1E"></rect>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#FFF6EF">
+    <text x="650" y="455">Can't find</text>
+    <text x="650" y="471">matching data</text>
+  </g>
+
+  <rect x="510" y="575" width="280" height="70" rx="14" fill="#0D6E5F"></rect>
+  <g text-anchor="middle" font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#EAFBF4">
+    <text x="650" y="605">Draws a chart</text>
+    <text x="650" y="621">or map</text>
+  </g>
+
+  <g font-family="'IBM Plex Sans', system-ui, sans-serif" font-size="13" fill="#34393A">
+    <rect x="50" y="852" width="24" height="14" rx="4" fill="#0D6E5F"></rect>
+    <text x="84" y="863" text-anchor="start">A step the app takes</text>
+    <polygon points="309,852 318,861 309,870 300,861" fill="#7ED9B8"></polygon>
+    <text x="332" y="863" text-anchor="start">A decision point</text>
+    <rect x="530" y="852" width="24" height="14" rx="7" fill="#A94A1E"></rect>
+    <text x="564" y="863" text-anchor="start">Exits down a different path</text>
+  </g>
+</svg>
