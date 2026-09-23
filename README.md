@@ -46,7 +46,7 @@ deficit, poverty, interest and exchange rates, the minimum wage, and demographic
 
 ## Live demo
 
-- **Web app:** _coming soon_ <!-- TODO: add the live app URL -->
+- **Web app:** <https://statscoai.streamlit.app/>
 
 ## Status
 

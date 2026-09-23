@@ -46,7 +46,7 @@ públicos, pobreza, tasas de interés y de cambio, salario mínimo y demografía
 
 ## Demo en vivo
 
-- **Aplicación web:** _próximamente_ <!-- TODO: añadir la URL de la app -->
+- **Aplicación web:** <https://statscoai.streamlit.app/>
 
 ## Estado
 
