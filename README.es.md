@@ -165,8 +165,8 @@ publicada. Sigue los pasos en orden.
 ### 2. Clonar el repositorio
 
 ```bash
-git clone https://github.com/Andres-pixel35/statsco_ai.git
-cd statsco_ai
+git clone https://github.com/Andres-pixel35/statsco-ai.git
+cd statsco-ai
 ```
 
 ### 3. Crear el entorno de Python
@@ -174,7 +174,7 @@ cd statsco_ai
 Con **conda** (recomendado, fija Python 3.11 por ti):
 
 ```bash
-conda env create -f environment.yml
+conda env create -f conda/environment.yml
 conda activate statsco_ai
 ```
 
@@ -197,7 +197,7 @@ pip install -r requirements.txt
 
 `boto3` aparece en las dependencias solo porque la versión publicada descarga la
 base de datos desde un bucket privado. Puedes quitarlo de `requirements.txt` /
-`environment.yml` antes de instalar si también haces el paso 5.
+`conda/environment.yml` antes de instalar si también haces el paso 5.
 
 ### 4. Obtener la base de datos
 
@@ -209,7 +209,7 @@ R2) es **privado**, así que no puedes obtenerla por tu cuenta.
 compartiremos.** Luego coloca el archivo en:
 
 ```
-statsco_ai/data/colombia.db
+statsco-ai/data/colombia.db
 ```
 
 ### 5. Desactivar la descarga en la nube (R2 / boto3)

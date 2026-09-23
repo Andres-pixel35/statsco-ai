@@ -157,7 +157,7 @@ else:
                     with st.popover(t("About"), wrap=True):
                         st.write(t(ABOUT_AND_LIMITS).format(date=db_last_updated))
                         st.link_button(t("Want to use your own API key or a higher limit? Run it locally"),
-                                       "https://github.com/Andres-pixel35/statsco_ai")
+                                       "https://github.com/Andres-pixel35/statsco-ai")
                         st.write(t("**Topics it can help with:**"))
                         st.write(list_topics(catalog, get_lang()))
                     with st.popover(t("Charts"), wrap=True):
@@ -171,7 +171,7 @@ else:
                     with st.popover(t("About"), width="stretch"):
                         st.write(t(ABOUT_AND_LIMITS).format(date=db_last_updated))
                         st.link_button(t("Want to use your own API key or a higher limit? Run it locally"),
-                                       "https://github.com/Andres-pixel35/statsco_ai")
+                                       "https://github.com/Andres-pixel35/statsco-ai")
                         st.write(t("**Topics it can help with:**"))
                         st.write(list_topics(catalog, get_lang()))
                 with card_cols[1]:
