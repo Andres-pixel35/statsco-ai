@@ -157,8 +157,8 @@ cloud download that only the hosted version uses. Follow the steps in order.
 ### 2. Clone the repository
 
 ```bash
-git clone https://github.com/Andres-pixel35/statsco_ai.git
-cd statsco_ai
+git clone https://github.com/Andres-pixel35/statsco-ai.git
+cd statsco-ai
 ```
 
 ### 3. Create the Python environment
@@ -166,7 +166,7 @@ cd statsco_ai
 With **conda** (recommended, it pins Python 3.11 for you):
 
 ```bash
-conda env create -f environment.yml
+conda env create -f conda/environment.yml
 conda activate statsco_ai
 ```
 
@@ -188,7 +188,7 @@ pip install -r requirements.txt
 
 `boto3` is listed in the requirements only because the hosted version downloads
 the database from a private bucket. You can remove it from `requirements.txt` /
-`environment.yml` before installing if you also do step 5.
+`conda/environment.yml` before installing if you also do step 5.
 
 ### 4. Get the database
 
@@ -200,7 +200,7 @@ is **private**, so you cannot fetch it yourself.
 with you.** Then place the file at:
 
 ```
-statsco_ai/data/colombia.db
+statsco-ai/data/colombia.db
 ```
 
 ### 5. Disable the cloud download (R2 / boto3)
