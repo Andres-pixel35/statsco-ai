@@ -128,14 +128,21 @@ def build_sql_prompt(question: str, schema_text: str,
         "question against it: 'this year' = the current year, 'last year' = current year "
         "minus 1, 'most recent'/'latest' = ORDER BY the period column DESC LIMIT 1.",
 
-        "If the question does not pin a specific period (no month, quarter, or trimester "
-        "named), and the table has a `period_type` column: default to `period_type = "
-        "'annual'` when 'annual' is among that column's listed Values - that row is the "
-        "pre-computed whole-year figure. If 'annual' is not among the listed Values, default "
-        "instead to December of the year in question (`period_type = 'month'` with "
-        "`period_label = 'December'`, or the row whose `period_start_date` falls in month 12). "
-        "If the table has projections for future years, you should show the data for current year. "
-        "Not 2036 if the user didn't request that and we are in 2026",
+        "If the question names no period at all, or only the current year ('this year', "
+        "'currently', 'now'), return the most recent value: with every [slice] pinned, use "
+        "the table's finest grain (`period_type` 'day', 'month', 'quarter', 'rolling_3m' or "
+        "'semester' over 'annual'; a table with only annual rows uses those) and keep the "
+        "latest period, e.g. `period_start_date = (SELECT MAX(period_start_date) FROM <same "
+        "table> WHERE <same filters>)`, or `year = (SELECT MAX(year) ...)` when there is no "
+        "date column. Never pick a period after today's date: a table with projections "
+        "shows the latest period up to today, not 2036.",
+
+        "If the question names a past year but no month, quarter or trimester, and the table "
+        "has a `period_type` column: default to `period_type = 'annual'` when 'annual' is "
+        "among that column's listed Values - that row is the pre-computed whole-year figure. "
+        "If 'annual' is not among the listed Values, default instead to December of that "
+        "year (`period_type = 'month'` with `period_label = 'December'`, or the row whose "
+        "`period_start_date` falls in month 12).",
 
         "Do all of the following inside <thinking>...</thinking> before writing any final "
         "answer.\n"
@@ -158,6 +165,13 @@ def build_sql_prompt(question: str, schema_text: str,
         "  - Are the period column(s) and any unit/scale columns selected?\n"
         "Then output the final query, and nothing else, in a single ```sql fenced block.",
     ]
+    if "Table: unemployment_monthly\n" in schema_text:
+        rules.append(
+            "A plain unemployment rate question (no seasonally adjusted, rolling three-month, "
+            "sex, region or department named) reads `unemployment_monthly` with "
+            "`series = 'original'` (not seasonally adjusted). Use `series = "
+            "'seasonally_adjusted'` only when the question asks for seasonally adjusted "
+            "figures, and `labor_market` only when it names a breakdown or a three-month window.")
     if wants_map:
         rules.append(
             "This question asks for a department-by-department map. SELECT the raw "
