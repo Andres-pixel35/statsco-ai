@@ -1,4 +1,10 @@
+from datetime import timedelta, timezone
+
 DATA_PATH = "./data/colombia.db"
+
+# "today" for the prompts and the rate limiter's day: the server clock is UTC, which would
+# date every question asked after 7pm in Colombia a day ahead
+COLOMBIA_TZ = timezone(timedelta(hours=-5))
 
 MODEL = "gemini-3.5-flash-lite"
 MODEL_FALLBACK = "gemini-3.1-flash-lite"
@@ -80,8 +86,8 @@ MAX_QUESTION_CHARS = 500
 # chain of LLM calls, so this caps API spend per user without a login system. A question that
 # fails because the model can't be reached (or crashes, or is interrupted) doesn't use a daily
 # slot; the per-minute cooldown still applies to it.
-RATE_LIMIT_SECONDS = 60
-RATE_LIMIT_PER_DAY = 3
+RATE_LIMIT_SECONDS = 0
+RATE_LIMIT_PER_DAY = 100
 
 # Answered questions per day across ALL users - a hard spend ceiling that doesn't depend on
 # telling users apart (st.context.ip_address can be spoofed, IPv6 users can rotate addresses).

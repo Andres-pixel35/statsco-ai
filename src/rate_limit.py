@@ -1,14 +1,13 @@
 import threading
 import time
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import datetime
 
 import streamlit as st
 
-from src.constants import RATE_LIMIT_SECONDS, RATE_LIMIT_PER_DAY, RATE_LIMIT_GLOBAL_PER_DAY
+from src.constants import (RATE_LIMIT_SECONDS, RATE_LIMIT_PER_DAY, RATE_LIMIT_GLOBAL_PER_DAY,
+                           COLOMBIA_TZ)
 from src.i18n import t
-
-COLOMBIA_TZ = timezone(timedelta(hours=-5))
 
 # process-global in-memory store, wiped on redeploy/sleep and emptied every midnight
 # (_roll_day). Fine here since Streamlit Community Cloud containers are themselves ephemeral

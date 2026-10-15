@@ -182,10 +182,14 @@ TOPICS_ES = {
         "del PIB, para la economía total y sus sectores primario, secundario y terciario "
         "y sus actividades, en series originales y desestacionalizadas."),
     "labor_market": ("Mercado laboral",
-        "Tasa de desempleo anual de hombres y mujeres (encuesta GEIH), además de "
-        "desagregaciones por departamento y región: fuerza laboral, ocupación, "
-        "informalidad, educación, rama de actividad, tipo de empleo, sitio de trabajo, "
-        "tamaño de empresa y afiliación a salud y pensión (seguridad social)."),
+        "Tasa de desempleo anual de hombres y mujeres e informalidad laboral (trabajadores "
+        "informales y formales, la tasa de informalidad) de la encuesta GEIH del DANE, además "
+        "de desagregaciones por departamento (p. ej. Antioquia) y región (p. ej. Bogotá, "
+        "el Caribe): población en edad de trabajar, "
+        "fuerza laboral, ocupación y cuántas personas trabajan por educación, rama de "
+        "actividad (agricultura, industria, construcción, comercio), tipo de empleo, sitio "
+        "de trabajo (vivienda, calle, local), tamaño de empresa (de microempresa a gran "
+        "empresa) y afiliación a salud y pensión (seguridad social)."),
     "traveler_flows": ("Flujos de viajeros",
         "Cruces fronterizos mensuales registrados por Migración Colombia desde 2012, por "
         "país y sexo: extranjeros que llegan y colombianos que salen."),
