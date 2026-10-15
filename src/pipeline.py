@@ -3,6 +3,7 @@ import re
 import sqlite3
 import time
 import boto3
+import pandas as pd
 import streamlit as st
 from src.constants import (
     MODEL,  DATA_PATH, CAUSE_BROKEN_DOWN_TABLES, SQL_MAX_ATTEMPTS,
@@ -12,7 +13,7 @@ from src.constants import (
 from src.catalog import (
     get_schema_text, get_lookup_tables, format_sources, list_topics, get_column_unit,
 )
-from src.charts import TRUNCATED_NOTE
+from src.charts import TRUNCATED_NOTE, pick_axes
 from src.retrieval import retrieve_relevant_tables, tables_in_sql, mentions_president
 from src.i18n import t, get_lang
 from src.model import call_model, extract_sql, strip_thoughts
@@ -159,8 +160,9 @@ def gate_verdict(raw: str) -> str:
 
 
 def gate_translation(raw: str) -> str:
-    """The English translation on the gate's `QUESTION: ...` line (es only), "" if the
-    line is missing. Markdown bold around the label is tolerated."""
+    """The rewritten English question (for es, translated too) on the gate's
+    `QUESTION: ...` line, "" if the line is missing. Markdown bold around the label is
+    tolerated."""
     match = re.search(r"^[\s*]*QUESTION[\s*]*:[\s*]*(.+)", raw, re.MULTILINE)
     return match.group(1).strip(" *") if match else ""
 
@@ -222,16 +224,16 @@ def answer_question(question: str, embedder, table_index, catalog, status=None) 
         return (t("Sorry, I can't answer that with the data I currently have. "
                   "Here's what I can help with:\n\n") + list_topics(catalog, lang))
 
-    # Retrieval, schema and SQL only ever see English; for es the gate translated it.
-    question_en = question
-    if lang == "es":
+    # Retrieval, schema and SQL only ever see the gate's English rewrite of the question
+    # (for es, also its translation). The answer and chart title still get the user's words.
+    question_en = gate_translation(gate_reply)
+    if not question_en and lang == "es":
         # the gate occasionally drops its QUESTION: line - resample once, else carry on with
-        # the Spanish text (retrieval and chart keywords work worse on it; SQL still copes)
-        question_en = (gate_translation(gate_reply)
-                       or gate_translation(strip_thoughts(call_model(
-                           gate_prompt, model=MODEL, temperature=0,
-                           reasoning_effort=REASONING_EFFORT_DEFAULT)))
-                       or question)
+        # the Spanish text (retrieval and chart keywords work worse on it; SQL still copes).
+        # en needs no resample: its original question works as is
+        question_en = gate_translation(strip_thoughts(call_model(
+            gate_prompt, model=MODEL, temperature=0, reasoning_effort=REASONING_EFFORT_DEFAULT)))
+    question_en = question_en or question
 
     stage(t("Finding relevant tables…"))
     relevant_tables = retrieve_relevant_tables(question_en, table_index, embedder)
@@ -281,7 +283,12 @@ def answer_question(question: str, embedder, table_index, catalog, status=None) 
             values = chart["values"]
             rows = [{k: values.get(v, v) if isinstance(v, str) else v for k, v in row.items()}
                     for row in rows]
-        default_view = "Map" if wants_map(question_en) else ("Line" if len(rows) > 1 else "Bar")
+        # bars for 1-2 x-axis points (a 2-point line says little), a line from 3 up; counted on
+        # the x the chart will use, so men/women over 2 years is 2 points, not 4 rows
+        df = pd.DataFrame(rows)
+        x = pick_axes(df)[0]
+        points = df[x].nunique() if x is not None else len(rows)
+        default_view = "Map" if wants_map(question_en) else ("Line" if points > 2 else "Bar")
         return {"rows": rows, "title": chart["title"], "sources": sources,
                 "default_view": default_view, "labels": chart["labels"], "units": units,
                 "truncated": truncated}

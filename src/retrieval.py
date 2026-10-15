@@ -60,9 +60,14 @@ def retrieve_relevant_tables(question: str, table_index: dict[str, tuple[np.ndar
     Chart/map words are dropped first: they say how to show the data, not which data,
     yet they pull the embedding off-subject - "Graph the annual inflation from 2015 to
     2024" ranked consumer_price_index 5th, the same question without "Graph" 4th.
+    "Colombia" and years go too: every table is Colombian, and the word dragged tables
+    whose topic says "for Colombia" up - "monetary policy rate in Colombia" lost
+    interest_rates from the top 4; "inflation rate in 2023" ranked consumer_price_index 3rd
+    with its year, 2nd without.
     """
     question = re.sub(rf"\b({'|'.join(CHART_KEYWORDS + MAP_KEYWORDS)})\w*\b", " ", question,
                       flags=re.IGNORECASE)
+    question = re.sub(r"\bcolombia\w*('s)?|\b(19|20)\d{2}\b", " ", question, flags=re.IGNORECASE)
     question_vec = embedder.encode(question)
     question_words = title_words(question)
 

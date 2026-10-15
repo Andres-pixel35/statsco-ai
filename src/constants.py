@@ -1,4 +1,10 @@
+from datetime import timedelta, timezone
+
 DATA_PATH = "./data/colombia.db"
+
+# "today" for the prompts and the rate limiter's day: the server clock is UTC, which would
+# date every question asked after 7pm in Colombia a day ahead
+COLOMBIA_TZ = timezone(timedelta(hours=-5))
 
 MODEL = "gemini-3.5-flash-lite"
 MODEL_FALLBACK = "gemini-3.1-flash-lite"

@@ -92,7 +92,11 @@ def pick_axes(df: pd.DataFrame):
     if x is None:
         non_numeric = [c for c in df.columns if c not in numeric]
         x = non_numeric[0] if non_numeric else None
-    y_cols = [c for c in numeric if c != x and df[c].nunique(dropna=True) > 1]
+    # a numeric `year` beside a finer x (period_start_date over several years) is a period,
+    # not a value - plotted, it became a ~2,000 line and stole the y-axis label. Only the exact
+    # name: change_from_previous_period, age_years, term_start_year are real values
+    y_cols = [c for c in numeric
+              if c != x and str(c).lower() != "year" and df[c].nunique(dropna=True) > 1]
     # other date/period-named columns (e.g. a human-readable period_label alongside
     # period_start_date) are redundant with x, not a real grouping dimension - excluding
     # them from series_col keeps a day-by-day result one continuous line, not one line per day
