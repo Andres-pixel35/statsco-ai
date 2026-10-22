@@ -389,7 +389,9 @@ def build_answer_prompt(question: str, sql: str, rows: list, schema_text: str) -
         'is money (e.g. "billions of COP"), pulling that from the schema description when it '
         "isn't a column in the results. Use compact unit signs, not words: % not \"percent\", "
         'pp not "percentage points" / "puntos porcentuales". Do not confuse pp with %. '
-        "Round to the precision a reader expects: rates and percentages to one or two "
+        "A value whose unit is percent or percentage points is already in that unit: write "
+        "it as given, never multiply it by 100, however small it is (-0.0365 with unit "
+        "percent is -0.04%, not -3.65%). Round to the precision a reader expects: rates and percentages to one or two "
         "decimals (5.2%, not 5.20306%), counts of people to whole numbers (2,308,585, not "
         "2,308,584.83), and no trailing zero decimals on any amount (995,490 billions of "
         "COP, not 995,490.0).",
